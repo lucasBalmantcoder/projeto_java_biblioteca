@@ -40,7 +40,7 @@ class app {
                         break;
                     case 3: 
                         System.out.println("Sair");
-                        System.
+                        
                         break;
                 
                     default:
