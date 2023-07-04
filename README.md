@@ -1,18 +1,19 @@
+
 _Projeto Bibilioteca_
 
 _note do projeto_
-eu dividir por tópicos para melhor compreensão
-        <status - se tem chamado pronta sim ou não >
-exemplo *status - se tem chamado pronta sim ou não*
+eu dividir por tï¿½picos para melhor compreensï¿½o
+        <status - se tem chamado pronta sim ou nï¿½o >
+exemplo *status - se tem chamado pronta sim ou nï¿½o*
     assunto - complemento
 
-# saída
+# saï¿½da
     app
-        App.java - saída de arquivos (por enquanto é a interface)
+        App.java - saï¿½da de arquivos (por enquanto ï¿½ a interface)
 
 #   model
 ##        aluno *concluido - sem chamada*
-            Aluno - é a classe que do aluno(atributos)
+            Aluno - ï¿½ a classe que do aluno(atributos)
                 nome -
                 cpf -
                 matricula - 
@@ -20,7 +21,7 @@ exemplo *status - se tem chamado pronta sim ou não*
                 contanto - 
 
 ##        emprestimos *falta concluir -  sem chamada*
-            Emprestimos - é a classe do emprestimos( alterações pendentes)
+            Emprestimos - ï¿½ a classe do emprestimos( alteraï¿½ï¿½es pendentes)
 
             ******* falta alterar ******
 
@@ -28,7 +29,7 @@ exemplo *status - se tem chamado pronta sim ou não*
 ##        exemplar *falta iniciar*
             Exemplar - classe de exemplar(falta iniciar chamadas)
 
-                código -
+                cï¿½digo -
                 data_de_compra -
                 titulo - 
                 disponivel -
@@ -48,16 +49,15 @@ buscar_aluno(String cpf) - busca alunos usando dados de cpf
 
             RepositorioAlunoLista 
 ###     RepositorioException - ****exception base****
-*Esse é a exceção base, com ela as outras exceções usando super*
+*Esse ï¿½ a exceï¿½ï¿½o base, com ela as outras exceï¿½ï¿½es usando super*
 *se chamam, ela foi baseada no que o professor fez*  
 
 
 #   universidade
         BibliotecaException -
 ##    ?BibLiotecaUniversidade
-*Essa classe é repsonsavel por criar os arquivo <biblioteca.liv>*
+*Essa classe ï¿½ repsonsavel por criar os arquivo <biblioteca.liv>*
 *ela usa a biblioteca de java.io.FIle*
 
 
 https://github.com/lucasBalmantcoder/projeto_java_biblioteca.git
-
