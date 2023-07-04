@@ -15,11 +15,11 @@ class app {
             int opcao;
             do{
                 limpaTela();
-                System.out.println("MENU PRINCIPAL");
-                System.out.println("==============");
-                System.out.println("Emprestar Livros");
-                System.out.println("Emprestimos");
-                System.out.println("Sair");
+                System.out.println("    MENU PRINCIPAL");
+                System.out.println("====================");
+                System.out.println("<1> Emprestar Livros");
+                System.out.println("<2> Emprestimos");
+                System.out.println("<0> Sair");
                 System.out.printf("Escolha uma opcão:");
 
                 try {
@@ -40,6 +40,7 @@ class app {
                         break;
                     case 3: 
                         System.out.println("Sair");
+                        System.
                         break;
                 
                     default:
