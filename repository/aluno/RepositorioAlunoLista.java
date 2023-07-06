@@ -1,9 +1,6 @@
-package repository;
+package repository.aluno;
 
 
-import repository.aluno.AlunoNaoCadastradoException;
-//import local
-import repository.aluno.RepositorioAluno;
 import model.aluno.Aluno;
 //import java
 import java.io.Serializable;
