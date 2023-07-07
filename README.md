@@ -6,7 +6,7 @@ eu dividir por tópicos para melhor compreensão
 exemplo *status - se tem chamado pronta sim ou não*
     assunto - complemento
 
-# saída
+# saída *Faltar concluir - sem chamada*
     app
         App.java - saída de arquivos (por enquanto é a interface)
 
@@ -33,8 +33,20 @@ exemplo *status - se tem chamado pronta sim ou não*
                 titulo - 
                 disponivel -
                 consultar - 
+##        hisotrico *Concluido - sem chamadas*
+###            <Historico> - ok
+responsavel por armazenar da data do historico
+###            <ItemHistorico> - ok
+é a classe que armazena a data e o historico dos livros
+pretendo fazer: 
+    data_do_ultimo_emprestimo()
+    data_de_emprestimo()
+    data_de_devolução()
 
-#  repository 
+# pattern 
+
+
+#  repository *Erro - sem chamadas*
 ##      aluno
             AlunoNaoCadastradoException - 
             CPFJAcadastradoException - 
@@ -60,4 +72,12 @@ buscar_aluno(String cpf) - busca alunos usando dados de cpf
 
 
 https://github.com/lucasBalmantcoder/projeto_java_biblioteca.git
+
+=======================================================================
+Projetados - 
+=======================================================================
+Historico - ok
+ItemHistorico - ok 
+
+
 

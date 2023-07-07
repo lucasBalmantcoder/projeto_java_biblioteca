@@ -6,18 +6,19 @@ public class Aluno implements Serializable {
   
   private String nome;
   private String cpf;
-  private String matricula;
   private String endereco;
-  private Double contato; 
+  private String contato; 
   //private boolean bloqueado; vou fazer um método para retorna se
   // ele está ou não bloqueado
 
 
 public Aluno(String nome, String cpf, String matricula, String endereco,
-double contato) {
+String contato) {
+
+  //retirei matricula para fazer um teste de agregração, não sei se vai dar
     this.nome = nome;
     this.cpf = cpf;
-    this.matricula = matricula;
+    //this.matricula = matricula;
     this.endereco = endereco;
     this.contato = contato;
 }
@@ -39,14 +40,16 @@ double contato) {
     this.cpf = cpf;
   }
 
+/* 
   public String getMatricula() {
     return this.matricula;
   }
 
+
   public void setMatricula(String matricula) {
     this.matricula = matricula;
   }
-
+*/
   public String getEndereco() {
     return this.endereco;
   }
@@ -55,11 +58,11 @@ double contato) {
     this.endereco = endereco;
   }
 
-  public Double getContato() {
+  public String getContato() {
     return this.contato;
   }
 
-  public void setContato(Double contato) {
+  public void setContato(String contato) {
     this.contato = contato;
   }
 
