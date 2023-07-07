@@ -7,8 +7,7 @@ eu dividir por t�picos para melhor compreens�o
 exemplo *status - se tem chamado pronta sim ou n�o*
     assunto - complemento
 
-# sa�da
-    app
+
         App.java - sa�da de arquivos (por enquanto � a interface)
 
 #   model
@@ -34,8 +33,20 @@ exemplo *status - se tem chamado pronta sim ou n�o*
                 titulo - 
                 disponivel -
                 consultar - 
+##        hisotrico *Concluido - sem chamadas*
+###            <Historico> - ok
+responsavel por armazenar da data do historico
+###            <ItemHistorico> - ok
+� a classe que armazena a data e o historico dos livros
+pretendo fazer: 
+    data_do_ultimo_emprestimo()
+    data_de_emprestimo()
+    data_de_devolu��o()
 
-#  repository 
+# pattern 
+
+
+#  repository *Erro - sem chamadas*
 ##      aluno
             AlunoNaoCadastradoException - 
             CPFJAcadastradoException - 
@@ -59,5 +70,5 @@ buscar_aluno(String cpf) - busca alunos usando dados de cpf
 *Essa classe � repsonsavel por criar os arquivo <biblioteca.liv>*
 *ela usa a biblioteca de java.io.FIle*
 
-
 https://github.com/lucasBalmantcoder/projeto_java_biblioteca.git
+

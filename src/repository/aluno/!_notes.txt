@@ -1,0 +1,23 @@
+chamadas
+controle
+notas
+------------------------------------------------------------------
+* chamadas
+nas chamadas, elas vão conectar todas as classes que tô fazendo.
+ainda não conseguir implementar nenhuma.
+
+
+* controle
+
+Não esqueça de criar a exceção do repositório, sem ela as outras
+exceções não vão funcionar, ela usam super para trocar  o  texto 
+dependendo do da exceção.
+
+* notas 
+
+fiz essa parte das exceções baseada no exemplo do professor Eno-
+que.
+    -não crie mais métodos
+    -fiz de forma muito semelhante
+
+------------------------------------------------------------------
