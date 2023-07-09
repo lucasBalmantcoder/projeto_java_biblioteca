@@ -5,72 +5,87 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
 //import local
 import model.aluno.Aluno;
-import repository.aluno.RepositorioAluno;
-import repository.aluno.RepositorioAlunoLista;
-import repository.conta.RepositorioConta;
-import repository.conta.RepositorioContaLista;
+import model.conta.Conta;
+import repository.aluno.*;
+import repository.conta.*;
+
+//import livro
+import repository.livro.*;
+import model.livro.*;
+
 
 //import exceções
-import repository.aluno.AlunoNaoCadastradoException;
-import repository.aluno.CPFJaCadastradoException;
+//import repository.aluno.AlunoNaoCadastradoException;
+//import repository.aluno.CPFJaCadastradoException;
+//import local.*; com asteriscos serve para fazer chamada
 
 
 
-public class BibliotecaUnivesidade {
+public class BibliotecaUniversidade {
     
     //arquivovo para salvar os dados
     private final File arquivo = new File("biblioteca.liv");
     
+    //chmada de arquivo dos repositórios aluno
     private RepositorioAluno repositorioAluno;
-    private RepositorioConta repositorioConta;
+    private RepositorioLivro repositorioLivro;
+    //private RepositorioConta repositorioConta;
 
     /* Padrão do projeto Sigleton*/
 
-    //Atributo estático que vai manter a única 
+    //Atributo est?tico que vai manter a ?nica 
     //instância da classe 
 
-    private static BibliotecaUnivesidade instance = null;
+    private static BibliotecaUniversidade instance = null;
 
     //Construtor deve ser privada garantindo que não seja chamado de
     //fora da classe
-    private BibliotecaUnivesidade() throws BibliotecaException {
-        if(arquivo.exists()) {
-               loadData();//falta implementar
-        }else {
-            repositorioAluno = new RepositorioAlunoLista();
-            repositorioConta = new RepositorioContaLista();
 
+    private BibliotecaUniversidade() throws BibliotecaException {
+        if(arquivo.exists()) {
+               loadData();//implementado
+        } else {
+            repositorioAluno = new RepositorioAlunoLista();
+            repositorioLivro = new RepositorioLivroLista();
+            //repositorioConta = new RepositorioContaLista();
+           //tenta fazer altera??es para fazer as chamadas da conta
         }
     }
 
 
-    //Método getInstance, responsável por fornecer a única instância
+    //Método getInstance, responsavel por fornecer a única instância
     //da classe
 
-    public static BibliotecaUnivesidade getInstance() throws BibliotecaException {
+    public static BibliotecaUniversidade getInstance() throws BibliotecaException {
         if(instance == null)  {
-            instance = new BibliotecaUnivesidade();
+            instance = new BibliotecaUniversidade();
         }
         return instance;
     }
 
-    public void inserir_aluno(Aluno aluno) throws CPFJaCadastradoException{
+
+    //Inicialização de chamada do Aluno
+
+
+    public void inserir_aluno(Aluno aluno) throws CPFJaCadastradoException {
         repositorioAluno.inserir_aluno(aluno);
     }
 
+
     public void alterar_aluno(Aluno aluno) throws AlunoNaoCadastradoException {
         repositorioAluno.alterar_aluno(aluno);
+        
     }
 
     public Aluno buscar_Aluno(String cpf) throws AlunoNaoCadastradoException {
-        repositorioAluno.buscar_aluno(cpf);
+        return repositorioAluno.buscar_aluno(cpf);
 
     }
 
@@ -80,9 +95,32 @@ public class BibliotecaUnivesidade {
 
     }
 
-    public List<Aluno>getAllaAlunos() {
+    public List<Aluno>getAllAlunos() {
         return repositorioAluno.getAll();
     }
+
+
+    //inicialização de chamadas do Livro
+
+    /***
+     * FInalizo toda a parte de inicialização de chamadas
+    */
+    public void inserir_livro(Livro livro) throws LivroJaCadastradoException {
+        repositorioLivro.inserir_livro(livro);
+    }
+
+    public void alterar_livro(Livro livro) throws LivroNaoCadastradoException{
+        repositorioLivro.alterar_livro(livro);
+    } 
+
+    public Livro buscar_Livro(String titulo) throws LivroNaoCadastradoException {
+        return repositorioLivro.buscar_livro(titulo);
+    }
+    
+    public void deletar_livro(Livro livro) throws BibliotecaException, LivroNaoCadastradoException {
+        repositorioLivro.deletar_livro(livro);
+    } 
+
 
     //talvez seja necessario fazer alterações no repositório aluno
     //falta implementar os método da conta
@@ -96,7 +134,8 @@ public class BibliotecaUnivesidade {
             ObjectInputStream o = new ObjectInputStream(f);
 
             repositorioAluno = (RepositorioAluno) o.readObject();
-            repositorioConta = (RepositorioConta) o.readObject();
+            //repositorioLivro = (RepositorioLivro) o.readObject();
+            //repositorioConta = (RepositorioConta) o.readObject();
 
             o.close();
             f.close();
@@ -114,7 +153,8 @@ public class BibliotecaUnivesidade {
 
             //salvar dados 
             o.writeObject(repositorioAluno);
-            o.writeObject(repositorioAluno);
+            // o.writeObject(repositorioLivro);
+            //o.writeObject(repositorioAluno);
 
             o.close();
             f.close();
