@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface RepositorioAluno {
 
-    void inserir_aluno(Aluno aluno) throws AlunoNaoCadastradoException, CPFJaCadastradoException;
+    void inserir_aluno(Aluno aluno) throws CPFJaCadastradoException;
 
     void alterar_aluno(Aluno aluno) throws AlunoNaoCadastradoException;
 
@@ -17,7 +17,7 @@ public interface RepositorioAluno {
     Aluno buscar_aluno(String cpf) throws AlunoNaoCadastradoException;
 
         List<Aluno> getAll();
-
+ 
 
     
 }

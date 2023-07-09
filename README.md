@@ -1,6 +1,10 @@
 
 _Projeto Bibilioteca_
 
+## fazer uma apresenaçãod sobre o projeto na sexta.
+## mostrar o funcionamento de alguma parte do código.
+
+
 _note do projeto_
 eu dividir por tï¿½picos para melhor compreensï¿½o
         <status - se tem chamado pronta sim ou nï¿½o >

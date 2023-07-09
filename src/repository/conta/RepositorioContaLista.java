@@ -18,7 +18,7 @@ public class RepositorioContaLista implements RepositorioConta, Serializable { /
 
     }
 
-        /*
+        
 
     @Override //corrigido
     public Conta inserir_conta(Conta conta) throws ContaNaoCadastradaException {
@@ -62,7 +62,7 @@ public class RepositorioContaLista implements RepositorioConta, Serializable { /
 
         }throw new ContaNaoCadastradaException();
     }
-     */
+     
 
     @Override
     public List<Conta> getAll(){
