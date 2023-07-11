@@ -2,6 +2,7 @@ package repository.livro;
 
 import java.util.List;
 
+import model.exemplar.Exemplar;
 import model.livro.Livro;
 
 public interface RepositorioLivro {
@@ -15,6 +16,7 @@ public interface RepositorioLivro {
     Livro buscar_livro(String titulo) throws LivroNaoCadastradoException;
 
     List<Livro> getAll();
+    //List<Exemplar> getAll();
 
     
 }

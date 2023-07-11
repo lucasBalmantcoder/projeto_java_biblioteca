@@ -21,15 +21,21 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileInputStream;
 //import locais
-
+import java.security.AllPermission;
 
 import model.aluno.*;
 import repository.aluno.*;
 import repository.conta.*;
 import repository.RepositoryException;
 
-//import do livro
+//import do exemplar
+import model.exemplar.*;
 import model.livro.*;
+import repository.exemplar.*;
+
+
+//import do livro
+//import model.livro.*;
 import repository.livro.*;
 
 //"fachada"
@@ -64,6 +70,9 @@ class App {
             biblioteca = BibliotecaUniversidade.getInstance();
 
 
+            cria_dados_testes();
+
+
             int opcao;
             do{
                 limpaTela();
@@ -92,7 +101,7 @@ class App {
                         break;
 
                     case 2:
-                        //cadastro_de_livro();
+                        cadastro_de_livro();
                         break;
                     case 3: 
                         //emprestimos();
@@ -296,19 +305,19 @@ class App {
 
     }
 
-    /*
+    
     private static void cadastro_de_livro() {
         int opcao;
 
         do {
             limpaTela();
-            System.out.println("CADASTRO DE LIVRO");
+            System.out.println("CADASTRO DE EXEMPLAR");
             System.out.println("=================");
             System.out.println();
             System.out.println("<1> Incluir Livro"); 
             System.out.println("<2> Alterar Livro");
             System.out.println("<3> Excluir Livro");
-            System.out.println("<4> Listar Livros");
+            System.out.println("<4> Listar Exemplares");
             System.out.println();
             System.out.print("Escolha uma opção: ");
 
@@ -321,24 +330,112 @@ class App {
             }
             switch (opcao) {
                 case 0: 
-                    //limpaTela(); //ok 
+                    limpaTela(); 
                     break;
                 case 1: 
-                    //inserir_Aluno(); //está funcioando
+                    inserir_livro();
                     break;
                 case 2:
                     //alterar_aluno();
                     break;
                 case 3: 
-                    //deletar_aluno(); //está funcionando
+                    //deletar_aluno(); 
                     break;
                 case 4: 
-                    listar_alunos(); // está funcionando
+                    listar_livros(); 
                     break;
             }
         } while (opcao != 0);
     }
 
-    */
+    private static void inserir_livro() { //está funcioando
+        limpaTela();
+        System.out.println("CADASTRAR EXEMPLAR");
+        System.out.println("==================");
+
+        System.out.print("Titulo: ");
+        String titulo = scanner.nextLine();
+        System.out.print("Autor: ");
+        String autor = scanner.nextLine();
+        System.out.print("Genero: ");
+        String genero = scanner.nextLine();
+
+
+
+        //int  = Integer.valueOf(scanner.nextLine());
+
+        //Exemplar exemplar = new Exemplar(codigo, null, false, null);
+        
+        Livro livro = new Livro(titulo, autor, genero);
+
+        //System.out.print("Genero: ");
+        //String genero = scanner.nextLine();
+
+        //Livro livro = new Livro(titulo, autor, genero);
+
+        //Exemplar exemplar = new Exemplar(titulo, autor, codigo);
+
+        try {
+            biblioteca.inserir_livro(livro);
+            //biblioteca.inserir_livro(livro);
+            System.out.println("Livro Cadastrado");
+        } catch (RepositoryException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        System.out.println();
+        System.out.println("pressione ENTER para continuar ");
+        scanner.nextLine();
+         
+         
+    }
+
+    
+     private static void listar_livros() {//n está funcionando
+        limpaTela();
+        List<Livro> livros = biblioteca.getAllLivros();
+        System.out.println("CODIGO         ESTOQUE       NOME     ");
+        System.out.println("============== ============= ===========");
+        for(Livro livro : livros) {
+            
+            System.out.printf("%14s2 ", livro.getNumero());
+            System.out.printf("%s ", livro.getAutor());
+            System.out.printf("  %-5s \n", livro.getTitulo());
+           
+
+        }//
+
+        System.out.println();
+        System.out.println("pressione ENTER para continuar ");
+        scanner.nextLine();
+
+
+    }
+
+
+
+    
+
+
     //fim das linhas
+
+
+
+    //parte destinada para dados de teste
+    //Está adicionando apenas Usuário
+    
+
+    private static void cria_dados_testes(){
+        try {
+            biblioteca.inserir_aluno(new Aluno("Lucas Balmant", "111.111.111-11", "20230708", "Rua Bom Jardim", "99999999999"));
+            biblioteca.inserir_aluno(new Aluno("Peter Parker", "222.222.222-22", "20230709", "Nova York", "22222222222"));
+
+            //dados de teste  de exemplar
+            
+            // biblioteca.inserir_exemplar(new Exemplar("macacos voadores", "Jhony bravo", "Fantasia", 02, true, null));
+            //biblioteca.inserir_exemplar(new Exemplar("Pantera ", "Michael Rusber", "Terror", 03, true, null));
+        } catch (RepositoryException ex) {
+            System.out.println(ex.getLocalizedMessage());
+        }
+    }
 }

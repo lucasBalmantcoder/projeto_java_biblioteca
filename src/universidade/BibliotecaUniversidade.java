@@ -12,7 +12,7 @@ import java.util.List;
 
 //import local
 import model.aluno.Aluno;
-import model.conta.Conta;
+//import model.conta.Conta;
 import repository.aluno.*;
 import repository.conta.*;
 
@@ -20,6 +20,9 @@ import repository.conta.*;
 import repository.livro.*;
 import model.livro.*;
 
+//import de exemplar
+import repository.exemplar.*;
+import model.exemplar.*;
 
 //import exceções
 //import repository.aluno.AlunoNaoCadastradoException;
@@ -36,6 +39,7 @@ public class BibliotecaUniversidade {
     //chmada de arquivo dos repositórios aluno
     private RepositorioAluno repositorioAluno;
     private RepositorioLivro repositorioLivro;
+    private RepositorioExemplar repositorioExemplar;
     //private RepositorioConta repositorioConta;
 
     /* Padrão do projeto Sigleton*/
@@ -54,6 +58,10 @@ public class BibliotecaUniversidade {
         } else {
             repositorioAluno = new RepositorioAlunoLista();
             repositorioLivro = new RepositorioLivroLista();
+            repositorioExemplar = new RepositorioExemplarLista();
+          
+         
+
             //repositorioConta = new RepositorioContaLista();
            //tenta fazer altera??es para fazer as chamadas da conta
         }
@@ -90,7 +98,7 @@ public class BibliotecaUniversidade {
     }
 
     public void deletar_aluno(Aluno aluno) throws BibliotecaException,
-     AlunoNaoCadastradoException  {
+    AlunoNaoCadastradoException  {
         repositorioAluno.deletar_aluno(aluno);
 
     }
@@ -102,9 +110,9 @@ public class BibliotecaUniversidade {
 
     //inicialização de chamadas do Livro
 
-    /***
-     * FInalizo toda a parte de inicialização de chamadas
-    */
+ 
+     //FInalizo toda a parte de inicialização de chamadas
+    
     public void inserir_livro(Livro livro) throws LivroJaCadastradoException {
         repositorioLivro.inserir_livro(livro);
     }
@@ -121,10 +129,35 @@ public class BibliotecaUniversidade {
         repositorioLivro.deletar_livro(livro);
     } 
 
+    public List<Livro>getAllLivros() {
+        return repositorioLivro.getAll();
+    }
+    
 
     //talvez seja necessario fazer alterações no repositório aluno
     //falta implementar os método da conta
 
+    //Impplementação da parte de inixialização de Exemplar
+    public void inserir_exemplar(Exemplar exemplar) throws CodigoJaCadastradoException {
+        repositorioExemplar.inserir_exemplar(exemplar);
+    }
+
+
+     public void exemplar(Exemplar exemplar) throws ExemplarNaoCadastradoException{
+        repositorioExemplar.alterar_exemplar(exemplar);
+    } 
+
+    public Exemplar buscar_Exemplar(int codigo) throws ExemplarNaoCadastradoException {
+        return repositorioExemplar.buscar_exemplar(codigo);
+    }
+    
+    public void deletar_exemplar(Exemplar exemplar) throws BibliotecaException, ExemplarNaoCadastradoException {
+        repositorioExemplar.deletar_exemplar(exemplar);
+    } 
+
+      public List<Exemplar>getAllExemplares() {
+        return repositorioExemplar.getAll();
+    }
 
 
     // a partir desse ponto são os métodos de armazenamento de dados
@@ -135,6 +168,7 @@ public class BibliotecaUniversidade {
 
             repositorioAluno = (RepositorioAluno) o.readObject();
             //repositorioLivro = (RepositorioLivro) o.readObject();
+            repositorioExemplar = (RepositorioExemplar) o.readObject();
             //repositorioConta = (RepositorioConta) o.readObject();
 
             o.close();
@@ -153,7 +187,8 @@ public class BibliotecaUniversidade {
 
             //salvar dados 
             o.writeObject(repositorioAluno);
-            // o.writeObject(repositorioLivro);
+            o.writeObject(repositorioLivro);
+            o.writeObject(repositorioExemplar);
             //o.writeObject(repositorioAluno);
 
             o.close();

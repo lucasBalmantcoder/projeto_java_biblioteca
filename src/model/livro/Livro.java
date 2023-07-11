@@ -1,21 +1,29 @@
 package model.livro;
 
-//import java
 import java.io.Serializable;
 
 public class Livro implements Serializable {
 
+    private String numero;
     private String titulo;
     private String autor;
     private String genero;
 
 
     public Livro(String titulo, String autor, String genero) {
+        //this.numero = numero;
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
     }
 
+    public String getNumero() {
+        return this.numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
 
     public String getTitulo() {
         return this.titulo;
@@ -40,5 +48,11 @@ public class Livro implements Serializable {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+
+
+
    
-}
+
+  
+
+}   
