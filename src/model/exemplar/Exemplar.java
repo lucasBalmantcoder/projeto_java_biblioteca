@@ -10,37 +10,37 @@ public class Exemplar implements Serializable {
 
     //Contandor de classe - tentativa de implementação 1
     private static int contador_de_instancias = 0;
-    private int codigo;
+    private String id_exemplar;
     private Livro livro;
     private boolean disponivel;
-    private String Consultar;
+    private boolean Consulta;
 
-    public Exemplar(int codigo, Livro livro, boolean disponivel, String Consultar) {
-        this.codigo = codigo;
+    public Exemplar(Livro livro, boolean disponivel, boolean Consulta) {
         this.livro = livro;
         this.disponivel = disponivel;
-        this.Consultar = Consultar;
+        this.Consulta = Consulta;
+        contador_de_instancias++;
+    }
+    public Exemplar( boolean disponivel, boolean Consultar) {
+        //this.id_exemplar = id_exemplar;
+        //this.livro = livro;
+        this.disponivel = disponivel;
+        this.Consulta = Consultar;
         contador_de_instancias++;
     }
 
-    public void imprimir_informacoes_livro() {
-        Livro livro = this.livro;
-        System.out.println("Ttulo: " + livro.getTitulo());
-        System.out.println("Autor: " + livro.getAutor());
-        System.out.println("Autor: " + livro.getGenero());
-   
-    }
-
-
-    public static int contador_de_instancias() {
+    public static int getContador_de_instancias() {
         return contador_de_instancias;
     }
-    public int getCodigo() {
-        return this.codigo;
+
+    
+    //get responsavel pot obter o id de exemplar
+    public String getId_exemplar() {
+        return this.id_exemplar;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId_exemplar(String id_exemplar) {
+        this.id_exemplar = id_exemplar;
     }
 
     public Livro getLivro() {
@@ -63,13 +63,18 @@ public class Exemplar implements Serializable {
         this.disponivel = disponivel;
     }
 
-    public String getConsultar() {
-        return this.Consultar;
+    public boolean isConsultar() {
+        return this.Consulta;
     }
 
-    public void setConsultar(String Consultar) {
-        this.Consultar = Consultar;
+    public boolean getConsultar() {
+        return this.Consulta;
     }
+
+    public void setConsultar(boolean Consultar) {
+        this.Consulta = Consultar;
+    }
+
 
 
 

@@ -1,4 +1,4 @@
-package repository.conta;
+package repository;
 
 import java.io.Serializable;
 

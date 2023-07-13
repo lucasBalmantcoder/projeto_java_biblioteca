@@ -1,19 +1,21 @@
-package repository.conta;
+package repository.emprestimo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import model.conta.Conta; //foi implementada
+
+import model.emprestimo.*;
 import pattern.idGeneratorStrategy;//foi implementada
+import repository.SequencialContaIdGeneratorStrategy;
 
 
-public class RepositorioContaLista implements RepositorioConta, Serializable { //está com erro devido a Classe conta não existir
-    List<Conta> contas;
+public class RepositorioEmprestimoLista implements RepositorioConta, Serializable { //est? com erro devido a Classe conta n?o existir
+    List<Emprestimo> emprestimos;
     idGeneratorStrategy idGenerator;
 
-    public RepositorioContaLista() { 
-        contas = new ArrayList<>();
-        idGenerator = new SequencialContaIdGeneratorStrategy();
+    public RepositorioEmprestimoLista() { 
+        emprestimos = new ArrayList<>();
+        index = new SequencialContaIdGeneratorStrategy();
 
 
     }
@@ -21,8 +23,8 @@ public class RepositorioContaLista implements RepositorioConta, Serializable { /
         
 
     @Override //corrigido
-    public Conta inserir_conta(Conta conta) throws ContaNaoCadastradaException {
-        if(conta.getNumero() == null) {
+    public Emprestimo inserir_novo_Emprestimo(Emprestimo emprestimo) throws EmprestimoNaoCadastradoException {
+        if(emprestimo.getNumero() == null) {
 
             conta.setNumero(idGenerator.nextId());
 
@@ -31,36 +33,36 @@ public class RepositorioContaLista implements RepositorioConta, Serializable { /
             while (buscar_conta(conta.getNumero()) != null) {
                 conta.setNumero(idGenerator.nextId());
             }
-        }catch (ContaNaoCadastradaException ex) { 
+        }catch (EmprestimoNaoCadastradoException ex) { 
             contas.add(conta);
         }
         return conta;
     }
 
     @Override //corrigido
-    public void deletar_conta(Conta conta) throws ContaNaoCadastradaException {
+    public void deletar_conta(Conta conta) throws EmprestimoNaoCadastradoException {
         if(!conta.remove(conta)) {
-            throw new ContaNaoCadastradaException();
+            throw new EmprestimoNaoCadastradoException();
         }
 
         
     }
 
     @Override 
-    public void alterar_conta(Conta conta) throws ContaJaCadastradaException { 
+    public void alterar_conta(Conta conta) throws EmprestimoJaCadastradoException { 
 
         //não existe necessidade de alterar essas contas
 
     }
 
     @Override
-    public Conta buscar_conta(String numero) throws ContaNaoCadastradaException { 
+    public Conta buscar_conta(String numero) throws EmprestimoNaoCadastradoException { 
         for(Conta conta : contas) {
             if (conta.getNumero().equals(numero)) { 
                 return conta;
             }
 
-        }throw new ContaNaoCadastradaException();
+        }throw new EmprestimoNaoCadastradoException();
     }
      
 

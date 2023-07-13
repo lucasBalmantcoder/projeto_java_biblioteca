@@ -1,11 +1,11 @@
-package universidade;
+package facade;
 
 //import java
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
+//import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
 import model.aluno.Aluno;
 //import model.conta.Conta;
 import repository.aluno.*;
-import repository.conta.*;
+//import repository.conta.*;
 
 //import livro
 import repository.livro.*;
@@ -121,8 +121,8 @@ public class BibliotecaUniversidade {
         repositorioLivro.alterar_livro(livro);
     } 
 
-    public Livro buscar_Livro(String titulo) throws LivroNaoCadastradoException {
-        return repositorioLivro.buscar_livro(titulo);
+    public Livro buscar_Livro(String id_livro) throws LivroNaoCadastradoException {
+        return repositorioLivro.buscar_livro(id_livro);
     }
     
     public void deletar_livro(Livro livro) throws BibliotecaException, LivroNaoCadastradoException {
@@ -147,8 +147,8 @@ public class BibliotecaUniversidade {
         repositorioExemplar.alterar_exemplar(exemplar);
     } 
 
-    public Exemplar buscar_Exemplar(int codigo) throws ExemplarNaoCadastradoException {
-        return repositorioExemplar.buscar_exemplar(codigo);
+    public Exemplar buscar_Exemplar(String id_exemplar) throws ExemplarNaoCadastradoException {
+        return repositorioExemplar.buscar_exemplar(id_exemplar);
     }
     
     public void deletar_exemplar(Exemplar exemplar) throws BibliotecaException, ExemplarNaoCadastradoException {
@@ -167,7 +167,7 @@ public class BibliotecaUniversidade {
             ObjectInputStream o = new ObjectInputStream(f);
 
             repositorioAluno = (RepositorioAluno) o.readObject();
-            //repositorioLivro = (RepositorioLivro) o.readObject();
+            repositorioLivro = (RepositorioLivro) o.readObject();
             repositorioExemplar = (RepositorioExemplar) o.readObject();
             //repositorioConta = (RepositorioConta) o.readObject();
 
@@ -196,8 +196,6 @@ public class BibliotecaUniversidade {
 
         }catch (IOException e) {
             throw new BibliotecaException("Erro ao gravar dados no arquivo", e);
-            
-
         }
     }
 

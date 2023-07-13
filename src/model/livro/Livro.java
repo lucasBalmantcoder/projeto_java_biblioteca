@@ -4,25 +4,27 @@ import java.io.Serializable;
 
 public class Livro implements Serializable {
 
-    private String numero;
+    private String id_livro;
     private String titulo;
     private String autor;
     private String genero;
 
 
-    public Livro(String titulo, String autor, String genero) {
-        //this.numero = numero;
+
+    public Livro( String titulo, String autor, String genero) {
+        //this.id_livro = id_livro;
         this.titulo = titulo;
         this.autor = autor;
         this.genero = genero;
     }
+   
 
-    public String getNumero() {
-        return this.numero;
+    public String getId_livro() {
+        return this.id_livro;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setId_livro(String id_livro) {
+        this.id_livro = id_livro;
     }
 
     public String getTitulo() {
@@ -48,6 +50,7 @@ public class Livro implements Serializable {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+
 
 
 

@@ -1,4 +1,4 @@
-package universidade;
+package facade;
 
 
 //todas as classe com exções devem extender a 'exception'

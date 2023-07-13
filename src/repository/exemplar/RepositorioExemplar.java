@@ -3,6 +3,7 @@ package repository.exemplar;
 //import locais
 import model.exemplar.*;
 
+
 //import da linguagem java
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface RepositorioExemplar {
 
     void deletar_exemplar(Exemplar exemplar) throws ExemplarNaoCadastradoException;
 
-    Exemplar buscar_exemplar(int codigo) throws ExemplarNaoCadastradoException;
+    Exemplar buscar_exemplar(String id_exemplar) throws ExemplarNaoCadastradoException;
 
         List<Exemplar> getAll();
  
