@@ -2,6 +2,7 @@ package repository.livro;
 
 import java.util.List;
 
+
 import model.livro.Livro;
 
 public interface RepositorioLivro {
@@ -12,9 +13,10 @@ public interface RepositorioLivro {
 
     void deletar_livro(Livro livro) throws LivroNaoCadastradoException;
 
-    Livro buscar_livro(String titulo) throws LivroNaoCadastradoException;
+    Livro buscar_livro(String id_livro) throws LivroNaoCadastradoException;
 
     List<Livro> getAll();
+    //List<Exemplar> getAll();
 
     
 }

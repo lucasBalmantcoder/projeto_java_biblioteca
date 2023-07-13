@@ -1,8 +1,7 @@
 package repository.livro;
-
-import model.aluno.Aluno;
 import model.livro.*;
-import repository.livro.*;
+import pattern.idGeneratorStrategy;
+import repository.SequencialContaIdGeneratorStrategy;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,16 +9,25 @@ import java.util.List;
 
 public class RepositorioLivroLista implements RepositorioLivro, Serializable {
 
-  List<Livro> livros;
+    List<Livro> livros;
+    idGeneratorStrategy index;
 
   public RepositorioLivroLista() {
     this.livros = new ArrayList<Livro>();
+    index = new SequencialContaIdGeneratorStrategy();
+
+    
   }
 
   @Override
   public void inserir_livro(Livro livro) throws LivroJaCadastradoException {
+    if(livro.getId_livro() != null) {
+        
+    }else {
+      livro.setId_livro(index.nextId());
+    }
     try {
-      buscar_livro(livro.getTitulo());
+      buscar_livro(livro.getId_livro());
       throw new LivroJaCadastradoException();
     } catch (LivroNaoCadastradoException ex) {
       livros.add(livro);
@@ -29,7 +37,7 @@ public class RepositorioLivroLista implements RepositorioLivro, Serializable {
   @Override
   public void alterar_livro(Livro livro) throws LivroNaoCadastradoException {
     // Em memória, não há necessidade de atualizar objeto
-    buscar_livro(livro.getTitulo());
+    buscar_livro(livro.getId_livro());
   }
 
   @Override
@@ -40,10 +48,10 @@ public class RepositorioLivroLista implements RepositorioLivro, Serializable {
   }
     
     @Override
-    public Livro buscar_livro(String titulo) throws LivroNaoCadastradoException {
+    public Livro buscar_livro(String id_livro) throws LivroNaoCadastradoException {
         
         for(Livro livro: livros) { 
-            if (livro.getTitulo().equals(titulo)) {
+            if (livro.getId_livro().equals(id_livro)) {
                 return livro;
             }
         }
@@ -53,7 +61,7 @@ public class RepositorioLivroLista implements RepositorioLivro, Serializable {
 
   @Override
   public List<Livro> getAll() {
-    return new ArrayList<>(livros);
+    return livros;
   }
 
 }
